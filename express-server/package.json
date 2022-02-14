@@ -1,0 +1,30 @@
+{
+  "name": "real-affinities-express",
+  "version": "1.0.0",
+  "description": "Express.js server",
+  "main": "server/Server.js",
+  "keywords": [],
+  "author": "Michele Minno",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "async": "^3.2.3",
+    "big-integer": "^1.6.51",
+    "body-parser": "1.19.1",
+    "cors": "^2.8.5",
+    "@elastic/elasticsearch": "6.7.0",
+    "express": "^4.17.2",
+    "express-validator": "^6.14.0",
+    "natural": "^5.1.13",
+    "url-exists": "^1.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "mocha": "^9.2.0",
+    "supertest": "^6.2.2",
+    "chai": "^4.3.6"
+  },
+  "scripts": {
+    "start": "nodemon -L ./server/server.js",
+    "test": "mocha ./test/**/*.js --timeout 40000"
+  }
+}

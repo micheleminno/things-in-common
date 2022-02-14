@@ -1,0 +1,93 @@
+<div id="header_well" class="well">
+  <div class="row">
+
+    <div class="col-lg-2 col-md-2 col-sm-2">
+      <a href="http://www.realaffinities.com"><img id="logo"
+				class="img-responsive" src="assets/images/logo.png"></a>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2">
+      <h4>Add a new fact</h4>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4">
+      <div class="big-spacer"></div>
+      <div [formGroup]="newFactForm" (ngSubmit)="addFact()">
+        <div>
+          <label for="name" class="input-label">Username</label>
+          <input class="search-field form-control" type="text" id="name" formControlName="name" />
+        </div>
+        <div style="margin-top: 20px; margin-bottom: 24px;">
+          <label for="query" class="input-label">Description</label>
+          <input class="form-control" style="font-style: italic" type="text" placeholder="playing beach volleyball"
+                  id="description" (keyup.enter)="addFact()" formControlName="description" />
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1">
+      <div style="display: inline-block; margin-top: 135px;">
+        <button class="btn btn-danger" id="btn_add" type="submit" (click)="addFact()">
+              <img src="assets/images/like.png" width="25" class="img-responsive"
+                alt="Responsive image">
+            </button>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-3">
+
+      <div style="display: inline-block;">
+        <button class="btn btn-primary" type="button" (click)="deleteFacts()">Delete all facts</button>
+      </div>
+
+      <div style="display: inline-block;">
+        <button class="btn btn-primary" type="button" (click)="goToThingsPage()">Manage things</button>
+      </div>
+
+      <!-- Loading image
+
+		 <div style="margin-left: 174px; margin-top: 55px" ng-style="loading && {'visibility': 'visible'} || !loading && {'visibility': 'hidden'}">
+        <i class="fa fa-refresh fa-spin fa-5x fa-fw"></i>
+      </div>-->
+
+    </div>
+  </div>
+</div>
+
+<div class="facts" style="margin-bottom: 200px">
+
+  <h3 style="margin-left: 10px">Facts</h3>
+  <div class="row" id="fact{{$index}}" *ngFor="let fact of factList" style="margin-left: 10px; margin-right: 40px">
+
+    <div class="boxed">
+      <div class="col-lg-3 col-md-3 col-sm-3" style="margin-top: 10px">
+        <h4>{{fact.username}}</h4> Description: {{fact.description}}
+
+        <div class="spacer"></div>
+
+        <span style="margin-right: 5px">Facts in </span>
+        <select class="btn-danger dropdown-toggle" id="language=" [(ngModel)]="language">
+          <option value="en" selected>english</option>
+          <option value="it">italian</option>
+        </select>
+
+        <div class="spacer"></div>
+
+      </div>
+
+      <div class="col-lg-8 col-md-8 col-sm-8 fact-content-box" style="margin-top: 20px; margin-bottom: 20px">
+
+        <textarea class="fact-content" rows="12" cols="112" (keyup.enter)="editFact(fact)" [ngModel]="fact.content">
+				</textarea>
+
+        <button class="edit-fact-label">Click on text to edit</button>
+        <button class="save-fact-label">Type 'Enter' to save</button>
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-1" style="margin-top: 5px; margin-bottom: 20px">
+
+        <button type="button" class="close" aria-label="Close" ng-click="deleteFact(fact)">
+					<span aria-hidden="true">&times;</span>
+				</button>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+  </div>
+</div>

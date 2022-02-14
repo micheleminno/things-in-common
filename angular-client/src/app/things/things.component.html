@@ -1,0 +1,176 @@
+<div id="header">
+  <div id="header_well" class="well">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2">
+        <a href="http://www.realaffinities.com">
+          <img id="logo" class="img-responsive" src="assets/images/logo.png"></a>
+
+        <!-- Loading image
+
+        <div style="margin-left: 49px; margin-top: 36px" [ngStyle]="loading && {'visibility': 'visible'} || !loading && {'visibility': 'hidden'}">
+          <i class="fa fa-refresh fa-spin fa-4x fa-fw"></i>
+        </div> -->
+
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <div style="display: inline-block;">
+          <label for="searchKeywords" class="input-label">Search by keywords</label>
+          <input class="big-search-field form-control" id="searchKeywords" [(ngModel)]="searchKeywords" type="text" placeholder="i.e. funk rock" (keyup.enter)="search(searchKeywords)">
+
+          <button class="btn btn-danger" id="btn_search" type="submit" (click)="search(searchKeywords)">
+              <img src="assets/images/search.png" width="25" class="img-responsive"
+                alt="Responsive image">
+            </button>
+        </div>
+
+        <div style="display: inline-block;">
+          <label for="potentialAccount" class="input-label" style="margin-left: 30px;">Search by username</label>
+          <img style="display: inline;" src="assets/images/account.png" width="25" class="img-responsive" alt="Responsive image">
+          <input class="big-search-field form-control" type="text" placeholder="i.e. RollingStone"
+                  [(ngModel)]="potentialAccount" (keyup.enter)="addPotentialAccount(potentialAccount)">
+
+          <button class="btn btn-danger" id="btn_add_account" type="button" (click)="addPotentialAccount()">
+							<img src="assets/images/like.png" width="25" class="img-responsive"
+								alt="Responsive image">
+						</button>
+        </div>
+
+        <div style="display: inline-block; margin-left: 30px;" id="getByFact">
+          <label for="selectedFact" class="input-label">Search by fact</label>
+          <select class="btn-default dropdown-toggle empty-dropdown" [ngModel]="selectedFact" ng-options="fact.username for fact in facts"></select>
+
+          <button class="btn btn-danger" id="btn_get_matching_facts" type="button" (click)="getThingsMatching()">
+  						<img src="assets/images/filter.png" width="25" class="img-responsive"
+  							alt="Responsive image">
+  					</button>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div style="margin-left: 20px; margin-top: 8px">
+          <div style="display: inline-block;">
+            <button class="btn btn-primary" type="button" (click)="goToFactsPage()">Manage facts</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="padding: 12px"></div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2"></div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div id="load-more" style="display: inline-block;">
+          <span>{{thingList.length}} things loaded</span>
+        </div>
+
+        <div style="display: inline-block;">
+          <button [ngClass]="{'btn btn-primary': status.active != 3,
+                            'btn btn-danger': status.active == 3}" type="button" (click)="showFactingAccounts()">
+            Compute more</button>
+        </div>
+
+        <div style="display: inline-block;">
+          <button type="button" [ngClass]="{'btn btn-primary': status.active != 0,
+                            'btn btn-danger': status.active == 0}" (click)="search(searchKeywords)">Search more</button>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div>
+          <label for="selectedFilter" class="dropdown-label">Filter by keywords</label>
+          <input class="search-field" [ngStyle]="mySearchStyle" type="text" [ngModel]="insertedFilterKeywords" (click)="insertedFilterKeywords = ''; mySearchStyle = {color:'black'}" (keyup.enter)="filter()">
+
+          <button class="btn btn-danger" id="btn_filter" type="button" (click)="filter()">
+          <img src="assets/images/filter.png" width="25" class="img-responsive"
+            alt="Responsive image">
+        </button>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2">
+        <div>
+          <div id="sort" style="display: inline-block;">
+            <label for="selectedSorting" class="dropdown-label">Sort by</label>
+            <select class="btn-danger dropdown-toggle empty-dropdown" [ngModel]="sortingPredicate" ng-options="sort.field as sort.label for sort in sortingPredicates">
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="things" style="margin-bottom: 200px">
+
+    <h3 style="margin-left: 10px">Things</h3>
+
+    <div *ngFor="let n of [] | range:rowsAmount" style="margin-left: 20px; margin-right: 20px">
+
+      <div id="thing{{$index}}" *ngFor="let thing of thingList | filter:keywords | orderBy:sortingPredicate" [hidden]="!canShowThing($index, $parent.$index)" class="col-lg-3 col-md-3 col-sm-3 boxed boxed-thing" [ngStyle]='style(thing)'>
+
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <input id="in_target_button" [ngClass]="{'btn btn-primary btn-not-in-target': !thing.inTarget, 'btn btn-danger btn-in-target': thing.inTarget}" type="submit" value="{{ thing.inTarget ? 'Remove from target' : 'Add to target'}}" (click)="updateTarget(thing)">
+          <a href="https://twitter.com/{{thing.name}}">
+          <img class="img-responsive" src="{{thingImages[thing.id]}}"
+          height="150" width="150"></a>
+          <div align="left">
+            <a class="username little-text" href="https://twitter.com/{{thing.name}}"> {{
+            thing.name }}</a>
+          </div>
+
+          <div class="little-spacer"></div>
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+
+          <span class="label label-danger" style="margin-right: 5px" *ngFor="let fact of thing.facts"> {{ fact }} </span>
+
+          <div class="big-spacer"></div>
+
+          <div>{{ thing.description }}</div>
+          <div class="spacer"></div>
+
+        </div>
+
+        <div class="spacer"></div>
+
+        <div id="facts" class="col-lg-12 col-md-12 col-sm-12">
+
+          <div *ngFor="let fact of thing.facts" class="fact-box">
+            <div style="margin-top: 5px">{{fact.description}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+    <div class="col-lg-4 col-md-4 col-sm-4">
+
+      <div id="load-more" style="display: inline-block;">
+        <span>{{thingList.length}} things loaded</span>
+      </div>
+
+      <div style="display: inline-block;">
+        <button [ngClass]="{'btn btn-primary': status.active != 3,
+                          'btn btn-danger': status.active == 3}" type="button" (click)="showFactingAccounts()">Compute
+        more</button>
+      </div>
+
+      <div style="display: inline-block;">
+        <button class="btn btn-primary" type="button" [ngClass]="{'btn btn-primary': status.active != 0,
+                          'btn btn-danger': status.active == 0}" (click)="search(searchKeywords)">Search more</button>
+      </div>
+
+      <div class="big-spacer"></div>
+
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4"></div>
+    <div class="col-lg-2 col-md-2 col-sm-2">
+
+      <div id="sort">
+        <label for="selectedSorting" class="dropdown-label">Sort by</label>
+        <select class="btn-danger dropdown-toggle empty-dropdown" [ngModel]="sortingPredicate" ng-options="sort.field as sort.label for sort in sortingPredicates">
+      </select>
+      </div>
+    </div>
+  </div>

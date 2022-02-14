@@ -1,0 +1,136 @@
+
+.input-label {
+  display: block;
+}
+.dropdown-label {
+  display: inline;
+}
+
+.search-field {
+  padding: 6px 6px 6px 6px;
+  margin-top: 2px;
+  width: 40% !important;
+  color: #C0C0C0;
+  font-style: italic;
+}
+
+.big-search-field {
+  display: inline !important;
+  padding: 6px 6px 6px 6px;
+  margin-top: 2px;
+  width: 60% !important;
+  color: #C0C0C0;
+  font-style: italic;
+}
+
+.empty-dropdown {
+  width: 135px;
+}
+.btn {
+  margin-bottom: 3px;
+  margin-left: 5px;
+}
+
+.fixed-width {
+  width: 200px;
+}
+
+.username {
+  margin: 0 auto;
+  font-family: sans-serif;
+  font: bold;
+  color: black;
+}
+
+.screename {
+  margin-left: auto;
+  margin-right: auto;
+  font-family: sans-serif;
+  color: #66757f;
+}
+
+.big-text {
+  font-size: 13pt;
+}
+
+.little-text {
+  font-size: 10pt;
+}
+
+.boxed {
+  border: 2px solid black;
+  height: 300px;
+  border-radius: 7px;
+  padding-top: 5px;
+  border-color: black;
+}
+
+.boxed-thing {
+  overflow-y: scroll;
+}
+
+.btn-in-target {
+  margin-left: -24px;
+}
+
+.btn-not-in-target {
+  margin-left: -4px;
+}
+
+.spacer {
+  height: 20px;
+}
+
+.little-spacer {
+  height: 10px;
+}
+
+.big-spacer {
+  height: 40px;
+}
+
+.tweet-box {
+  border: 2px solid black;
+  border-radius: 7px;
+  padding: 5px;
+  margin-top: 15px;
+  background-color: white;
+}
+
+.tweet-date {
+  color: #428bca;
+}
+
+.fact-content {
+  border-radius: 7px;
+}
+
+.fact-content:focus {
+  background-color: green;
+  color: white;
+}
+
+.edit-fact-label {
+  border: 2px solid black;
+  border-radius: 7px;
+  background-color: green;
+  cursor: default;
+  color: white;
+}
+
+.save-fact-label {
+  border: 2px solid black;
+  border-radius: 7px;
+  background-color: blue;
+  cursor: default;
+  color: white;
+  visibility: hidden
+}
+
+.fact-content-box textarea.fact-content:focus+button.edit-fact-label {
+  visibility: hidden;
+}
+
+.fact-content-box textarea.fact-content:focus~button.save-fact-label {
+  visibility: visible;
+}
