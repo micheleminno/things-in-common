@@ -13,11 +13,15 @@
       <div [formGroup]="newFactForm" (ngSubmit)="addFact()">
         <div>
           <label for="name" class="input-label">Username</label>
-          <input class="search-field form-control" type="text" id="name" formControlName="name" />
+          <input class="search-field form-control" type="text" id="name" formControlName="name" placeholder="Chiara"/>
+        </div>
+        <div>
+          <label for="date" class="input-label">Date</label>
+          <input class="search-field form-control" type="date" id="date" formControlName="date"/>
         </div>
         <div style="margin-top: 20px; margin-bottom: 24px;">
           <label for="query" class="input-label">Description</label>
-          <input class="form-control" style="font-style: italic" type="text" placeholder="playing beach volleyball"
+          <input class="form-control" style="font-style: italic" type="text" placeholder="I played beach volleyball"
                   id="description" (keyup.enter)="addFact()" formControlName="description" />
         </div>
       </div>

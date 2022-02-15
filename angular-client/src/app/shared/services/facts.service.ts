@@ -43,7 +43,8 @@ export class FactsService {
 
     console.log("Fact to add:" + JSON.stringify(fact));
 
-    const serviceUrl = '/facts/add?name=' + fact.username + '&query=' + fact.description;
+    const serviceUrl = '/facts/add?username=' + fact.username + '&date=' + fact.date +
+                        '&description=' + fact.description;
 
     return this.callService(serviceUrl);
   }
@@ -79,7 +80,7 @@ export class FactsService {
   searchFacts(keywords: string, cursor: number): Observable<Fact[]> {
 
     const serviceUrl = 'TODO';
-    
+
     return null;
   }
 }

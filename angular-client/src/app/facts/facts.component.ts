@@ -26,19 +26,22 @@ export class FactsComponent implements OnInit {
 
     this.newFactForm = this.fb.group({
       name: '',
-      query: ''
+      date: '',
+      description: ''
     });
     // Optional: subscribe to changes on the form
     // this.factsForm.valueChanges.subscribe(values => this.updateFact(values));
   }
 
   insertedFactUsername: string;
+  insertedFactDate: string;
   insertedFactDescription: string;
 
 
   ngOnInit() {
 
     this.insertedFactUsername = 'fact username';
+    this.insertedFactDate = 'fact date';
     this.insertedFactDescription = 'fact description';
 
     this.showFacts();

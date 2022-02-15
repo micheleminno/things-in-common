@@ -8,6 +8,7 @@ export class Fact {
   ) {}
 
   username: string;
+  date: string;
   description: string;
   language: Language;
 }
