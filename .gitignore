@@ -1,0 +1,8 @@
+.DS_Store
+default.json
+*.log
+.nyc_output/
+artifacts/
+.settings/
+package-lock.json
+elastic-data/**
